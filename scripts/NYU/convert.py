@@ -31,7 +31,7 @@
 #
 # See https://github.com/deeplearningais/curfil/wiki/Training-and-Prediction-with-the-NYU-Depth-v2-Dataset
 
-from __future__ import print_function
+
 
 from joblib import Parallel, delayed
 from skimage import exposure
@@ -55,8 +55,8 @@ def process_ground_truth(ground_truth):
     colors["floor"] = _solarized.colors[1]
     shape = list(ground_truth.shape) + [3]
     img = np.ndarray(shape=shape, dtype=np.uint8)
-    for i in xrange(shape[0]):
-        for j in xrange(shape[1]):
+    for i in range(shape[0]):
+        for j in range(shape[1]):
             l = ground_truth[i, j]
             if (l == 0):
                 img[i, j] = (0, 0, 0)  # background
@@ -164,10 +164,10 @@ if __name__ == "__main__":
     labels = h5_file['labels']
     images = h5_file['images']
 
-    rawDepthFilenames = [u''.join(unichr(c) for c in h5_file[obj_ref]) for obj_ref in h5_file['rawDepthFilenames'][0]]
-    names = [u''.join(unichr(c) for c in h5_file[obj_ref]) for obj_ref in h5_file['names'][0]]
-    scenes = [u''.join(unichr(c) for c in h5_file[obj_ref]) for obj_ref in h5_file['sceneTypes'][0]]
-    rawRgbFilenames = [u''.join(unichr(c) for c in h5_file[obj_ref]) for obj_ref in h5_file['rawRgbFilenames'][0]]
+    rawDepthFilenames = [''.join(chr(c) for c in h5_file[obj_ref]) for obj_ref in h5_file['rawDepthFilenames'][0]]
+    names = [''.join(chr(c) for c in h5_file[obj_ref]) for obj_ref in h5_file['names'][0]]
+    scenes = [''.join(chr(c) for c in h5_file[obj_ref]) for obj_ref in h5_file['sceneTypes'][0]]
+    rawRgbFilenames = [''.join(chr(c) for c in h5_file[obj_ref]) for obj_ref in h5_file['rawRgbFilenames'][0]]
     classes = get_structure_classes()
 
     print("processing images")
